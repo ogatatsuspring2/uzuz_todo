@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+  <title>Todo</title>
+</head>
+<body>
+  <div th:if="${session.mode == 'update'}">
+	  <h2 style="color:teal;">タスク更新・削除</h2>
+  </div>
+  <div th:unless="${session.mode == 'update'}">
+    <h2 style="color:teal;">タスク追加</h2>
+  </div>
+  <form th:action="@{/}" method="post" th:object="${todoData}">
+	<div th:text="${todoData}"></div>
+	<table>
+	  <div th:if="${session.mode == 'update'}">
+        <tr>
+		  <th>task_id</th>
+		  <td>
+		    <span th:text="*{taskId}"></span>
+		    <input type="hidden" th:field="*{taskId}">
+		  </td>
+	    </tr>
+	  </div>
+	  <tr>
+		<th>タイトル</th>
+		<td>
+		  <input type="text" name="title" size="31" th:value="*{title}">
+		  <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
+		    th:errorclass="red"></div>
+		</td>
+	  </tr>
+	  <tr>
+	  		<th>説明</th>
+	  		<td>
+	  		  <textarea cols="30" rows="5" name="description" th:field="*{description}"></textarea>
+	  		  <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+	  		    th:errorclass="red"></div>
+	  		</td>
+	  	  </tr>
+	  <tr>
+	  <tr>
+        <th>期限</th>
+        <td style="text-align:left;">
+          <input type="date" name="dueDate" th:value="*{dueDate}" placeholder="yyyy-mm-dd">
+          <div th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}"
+            th:errorclass="red"></div>
+        </td>
+      </tr>
+	    <th>優先度</th>
+	  	<td>
+	      <input type="radio" value="1" th:field="*{priority}">低
+	      <input type="radio" value="2" th:field="*{priority}">中
+	      <input type="radio" value="3" th:field="*{priority}">高
+	      <div th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"
+            th:errorclass="red"></div>
+        </td>
+      </tr>
+	  <tr>
+        <th>チェック</th>
+        <td>
+          <input type="checkbox" value="Y" th:field="*{status}">完了
+          <input type="hidden" name="!status" value="N">　<!-- Thymeleafの機能 -->
+        </td>
+      </tr>
+	  <tr>
+	    <th>担当者</th>
+	    <td>
+	      <select th:field="*{userId}">
+		    <option value="0" selected>--選択してください--</option>
+	        <option th:each="user: ${users}"
+	          th:value="${user.userId}" th:text="${user.userName}"></option>
+          </select>  
+		  <div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"
+		    th:errorclass="red"></div>
+        </td>
+      </tr>
+	</table>
+	<div th:if="${session.mode == 'update'}">
+      <button type="submit" th:formaction="@{/todo/update}">更新</button>
+      <button type="submit" th:formaction="@{/todo/delete}">削除</button>
+	  <button type="submit" th:formaction="@{/todo/cancel}">キャンセル</button>
+    </div>
+	<div th:unless="${session.mode == 'update'}">
+	  <button type="submit" th:formaction="@{/todo/create}">登録</button>
+	  <button type="submit" th:formaction="@{/todo/cancel}">キャンセル</button>
+	</div>
+  </form>
+</body>
+</html>

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: uzuz_todo
+  datasource:
+    url: jdbc:mysql://localhost:3306/uzuz_db?useSSL=false&serverTimezone=Asia/Tokyo&characterEncoding=UTF-8
+    username: todo_user
+    password: todo_user
+    driver-class-name: com.mysql.cj.jdbc.Driver
