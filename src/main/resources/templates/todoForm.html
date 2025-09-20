@@ -13,7 +13,6 @@
     <h2 style="color:teal;">タスク追加</h2>
   </div>
   <form th:action="@{/}" method="post" th:object="${todoData}">
-	<div th:text="${todoData}"></div>
 	<table>
 	  <div th:if="${session.mode == 'update'}">
         <tr>
@@ -33,13 +32,13 @@
 		</td>
 	  </tr>
 	  <tr>
-	  		<th>説明</th>
-	  		<td>
-	  		  <textarea cols="30" rows="5" name="description" th:field="*{description}"></textarea>
-	  		  <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
-	  		    th:errorclass="red"></div>
-	  		</td>
-	  	  </tr>
+	    <th>説明</th>
+	  	  <td>
+	  	    <textarea cols="30" rows="5" name="description" th:field="*{description}"></textarea>
+	  		<div th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+	  		  th:errorclass="red"></div>
+	  	  </td>
+	    </tr>
 	  <tr>
 	  <tr>
         <th>期限</th>

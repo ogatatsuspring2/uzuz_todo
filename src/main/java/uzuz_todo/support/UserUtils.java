@@ -1,5 +1,7 @@
 package uzuz_todo.support;
 
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.stereotype.Service;
 
 import uzuz_todo.entity.User;
@@ -14,6 +16,10 @@ public class UserUtils {
     user.setUserName( userData.getUserName() );
     user.setAge( userData.getAge() );
     user.setPassword( userData.getPassword() );
+//    LocalDate localDate = LocalDate.parse( userData.getCreatedAt(), DateTimeFormatter.ofPattern( "yyyy-MM-dd" ) );
+//    user.setCreatedAt( localDate.atStartOfDay() );
+//    localDate = LocalDate.parse( userData.getUpdatedAt(), DateTimeFormatter.ofPattern( "yyyy-MM-dd" ) );
+//    user.setUpdatedAt( localDate.atStartOfDay() );
     return user;
     
   }
@@ -24,6 +30,9 @@ public class UserUtils {
     userData.setUserName( user.getUserName() );
     userData.setAge( user.getAge() );
     userData.setPassword( user.getPassword() );
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "yyyy-MM-dd HH:mm:ss" );
+    userData.setCreatedAt( user.getCreatedAt().format( formatter ) );
+    userData.setUpdatedAt( user.getUpdatedAt().format( formatter ) );
     return userData;
   }
 

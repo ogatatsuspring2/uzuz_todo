@@ -3,8 +3,6 @@ package uzuz_todo.form;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.Data;
 
 
@@ -23,10 +21,8 @@ public class UserData {
   @NotBlank( message = "パスワードを入力してくださ" )
   private String password;
   
-  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") 
   private String createdAt;
   
-  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") 
   private String updatedAt;
   
 }
