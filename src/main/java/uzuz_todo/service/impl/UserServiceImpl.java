@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 
 import uzuz_todo.entity.User;
@@ -14,6 +15,7 @@ import uzuz_todo.service.UserService;
 import uzuz_todo.support.UserUtils;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
   
   private final UserRepository userRepository;
