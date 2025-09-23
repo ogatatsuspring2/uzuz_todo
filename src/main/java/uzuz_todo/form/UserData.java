@@ -12,13 +12,13 @@ public class UserData {
   
   private Integer userId;
   
-  @NotBlank( message = "ユーザ名を入力してくださ" )
+  @NotBlank( message = "ユーザ名を入力してください" )
   private String userName;
   
   @NotNull( message = "年齢を入力してください" )
   private Integer age;
   
-  @NotBlank( message = "パスワードを入力してくださ" )
+  @NotBlank( message = "パスワードを入力してください" )
   private String password;
   
   private String createdAt;

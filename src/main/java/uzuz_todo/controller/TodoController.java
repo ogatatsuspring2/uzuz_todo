@@ -121,26 +121,29 @@ public class TodoController {
     if ( todoService.update( todoData, result ) ) {
       return "redirect:/todo";
     } else {
+      List<UserData> users = userService.readAll();
+      model.addAttribute( "users", users );
       return "todoForm";
     }
+    
   }
   
   
   
   @PostMapping( "/todo/delete" )
-  public String deleteTodo( @ModelAttribute @Validated TodoData todoData ) {
+  public String deleteTodo( 
+    @ModelAttribute @Validated TodoData todoData,
+    BindingResult result ) {
     
-    if ( todoData.getUserId() == null ) {
-      todoData.setUserId( 0 );
-    }
     if ( todoService.delete( todoData ) ) {
       return "redirect:/todo";
     } else {
       return "todoForm";
     }
+    
   }
   
-  
+
   
   
   

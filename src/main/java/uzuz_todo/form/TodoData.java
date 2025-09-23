@@ -35,6 +35,7 @@ public class TodoData {
   private String status;
   
   @NotNull( message = "担当者を指定してください" )
+  @Min( value = 1, message = "担当者を指定してください" )
   private Integer userId;
   
 }

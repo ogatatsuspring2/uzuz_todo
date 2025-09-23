@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
-<title>TodoList</title>
+<title>タスク一覧</title>
 </head>
 <body>
   <h2 style="color:teal;">タスク一覧</h2>
@@ -23,11 +23,17 @@
 	  <td th:text="${task.title}"></td>
 	  <td th:text="${task.description}"></td>
 	  <td th:text="${task.dueDate}"></td>
-	  <td th:text="${task.priority}"></td>
+	  <td th:switch="${task.priority}">
+	    <span th:case="1">低</span>
+	    <span th:case="2">中</span>
+	    <span th:case="3">高</span>
+	    <span th:case="*">不明</span>
+	  </td>
 	  <td th:text="${task.status} == 'Y' ? '完了' : ''"></td>
 	  <td th:if="${task.del == 'N'}" th:text="${task.userName}"></td>
 	  <td th:unless="${task.del == 'N'}" th:utext="'<s style=color:red;>' + ${task.userName} + '</s>'"></td>
 	</tr>
   </table>
+  <br/><a th:href="@{/}">メニューへ</a>
 </body>
 </html>
