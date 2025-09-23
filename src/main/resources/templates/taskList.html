@@ -25,7 +25,8 @@
 	  <td th:text="${task.dueDate}"></td>
 	  <td th:text="${task.priority}"></td>
 	  <td th:text="${task.status} == 'Y' ? '完了' : ''"></td>
-	  <td th:text="${task.userName}"></td>
+	  <td th:if="${task.del == 'N'}" th:text="${task.userName}"></td>
+	  <td th:unless="${task.del == 'N'}" th:utext="'<s style=color:red;>' + ${task.userName} + '</s>'"></td>
 	</tr>
   </table>
 </body>

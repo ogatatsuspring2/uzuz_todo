@@ -47,7 +47,24 @@
 	  	    th:errorclass="red"></div>
 	    </td>
 	  </tr>
+	  <tr>
+	    <th>権限</th>
+	  	<td>
+	  	  <input type="radio" name="role" th:field="*{role}" value="U">一般
+	  	  <input type="radio" name="role" th:field="*{role}" value="A">管理者
+	  	  <div th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
+	  	    th:errorclass="red"></div>
+	  	</td>
+	  </tr>
+	  <tr>
+	    <th>削除</th>
+	    <td style="text-align:left;">
+		  <input type="checkbox" value="Y" th:field="*{del}">削除
+	      <input type="hidden" name="!del" value="N">
+	    </td>
+	  </tr>
 	</table>
+	
 	<div th:if="${session.mode == 'update'}">
       <button type="submit" th:formaction="@{/user/update}">更新</button>
 	  <button type="submit" th:formaction="@{/user/cancel}">キャンセル</button>

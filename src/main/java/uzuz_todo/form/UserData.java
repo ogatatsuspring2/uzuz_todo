@@ -25,4 +25,10 @@ public class UserData {
   
   private String updatedAt;
   
+  @NotBlank( message = "権限を入力してください" )
+  private String role;
+  
+  @NotBlank
+  private String del;
+  
 }

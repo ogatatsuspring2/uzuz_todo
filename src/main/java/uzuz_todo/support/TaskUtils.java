@@ -21,6 +21,8 @@ public class TaskUtils {
     taskData.setStatus( task.getStatus() );
     taskData.setUserId( task.getUserId() );
     taskData.setUserName( task.getUserName() );
+    taskData.setRole( task.getRole() );
+    taskData.setDel( task.getDel() );
     return taskData;
   }
 

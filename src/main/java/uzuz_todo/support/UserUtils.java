@@ -20,6 +20,8 @@ public class UserUtils {
 //    user.setCreatedAt( localDate.atStartOfDay() );
 //    localDate = LocalDate.parse( userData.getUpdatedAt(), DateTimeFormatter.ofPattern( "yyyy-MM-dd" ) );
 //    user.setUpdatedAt( localDate.atStartOfDay() );
+    user.setRole( userData.getRole() );
+    user.setDel( userData.getDel() );
     return user;
     
   }
@@ -33,6 +35,8 @@ public class UserUtils {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "yyyy-MM-dd HH:mm:ss" );
     userData.setCreatedAt( user.getCreatedAt().format( formatter ) );
     userData.setUpdatedAt( user.getUpdatedAt().format( formatter ) );
+    userData.setRole( user.getRole() );
+    userData.setDel( user.getDel() );
     return userData;
   }
 

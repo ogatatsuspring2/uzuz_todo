@@ -58,7 +58,7 @@
         </td>
       </tr>
 	  <tr>
-        <th>チェック</th>
+        <th>完了</th>
         <td>
           <input type="checkbox" value="Y" th:field="*{status}">完了
           <input type="hidden" name="!status" value="N">　<!-- Thymeleafの機能 -->
@@ -70,7 +70,7 @@
 	      <select th:field="*{userId}">
 		    <option value="0" selected>--選択してください--</option>
 	        <option th:each="user: ${users}"
-	          th:value="${user.userId}" th:text="${user.userName}"></option>
+	          th:if="${user.del == 'N'}" th:value="${user.userId}" th:text="${user.userName}"></option>
           </select>  
 		  <div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"
 		    th:errorclass="red"></div>

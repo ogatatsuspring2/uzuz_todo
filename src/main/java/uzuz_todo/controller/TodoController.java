@@ -48,6 +48,11 @@ public class TodoController {
   
   
   
+  @GetMapping( "/" )
+  public String showMenu() {
+    return "menu";
+  }
+  
   
   @GetMapping( "/todo" )
   public String showTodoList( Model model ) {
@@ -125,6 +130,9 @@ public class TodoController {
   @PostMapping( "/todo/delete" )
   public String deleteTodo( @ModelAttribute @Validated TodoData todoData ) {
     
+    if ( todoData.getUserId() == null ) {
+      todoData.setUserId( 0 );
+    }
     if ( todoService.delete( todoData ) ) {
       return "redirect:/todo";
     } else {
@@ -202,6 +210,7 @@ public class TodoController {
       return "userForm";
     }
   }
+  
   
   
 }

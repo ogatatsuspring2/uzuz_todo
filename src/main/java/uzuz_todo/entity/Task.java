@@ -41,5 +41,11 @@ public class Task {
   
   @Column( name = "user_name" )
   private String userName;
+  
+  @Column( name = "role" )
+  private String role;
+  
+  @Column( name = "del" )
+  private String del;
     
 }
