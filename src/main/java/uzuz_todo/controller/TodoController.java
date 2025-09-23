@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import uzuz_todo.form.LoginForm;
 import uzuz_todo.form.TaskData;
 import uzuz_todo.form.TodoData;
 import uzuz_todo.form.UserData;
@@ -44,6 +45,16 @@ public class TodoController {
     this.userService = userService;
     this.session = session;
     
+  }
+  
+  
+  
+  
+  
+  
+  @GetMapping( "/login" )
+  public String showLogin( @ModelAttribute LoginForm loginForm ) {
+    return "login";
   }
   
   

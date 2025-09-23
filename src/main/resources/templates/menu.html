@@ -17,5 +17,8 @@
 	<div>
 	  <a th:href="@{/user}">ユーザ一覧（管理者のみ）</a><br/><br/>
 	</div>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="ログアウト">
+	</form>
   </body>
 </html>
