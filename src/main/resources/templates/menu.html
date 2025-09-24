@@ -15,7 +15,7 @@
 	  <a>パスワード変更</a><br/><br/>
 	</div>
 	<div>
-	  <a th:href="@{/user}">ユーザ一覧（管理者のみ）</a><br/><br/>
+	  <a sec:authorize="hasAuthority('A')" th:href="@{/user}">ユーザ一覧（管理者のみ）</a><br/><br/>
 	</div>
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="ログアウト">

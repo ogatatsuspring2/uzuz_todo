@@ -7,4 +7,7 @@ import uzuz_todo.entity.User;
 
 
 public interface UserRepository extends JpaRepository<User,Integer> {
+  
+  User findByUserName( String userName );
+  
 }

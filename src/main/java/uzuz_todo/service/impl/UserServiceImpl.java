@@ -33,6 +33,7 @@ public class UserServiceImpl implements UserService {
   
   @Override
   public UserData read( int user_id ) {
+//    System.out.println( userRepository.findByUserName( "tuser1" ) );
     return userUtils.Entity2Form( userRepository.findById( user_id ).get() );
   }
 
