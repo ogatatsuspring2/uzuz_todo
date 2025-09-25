@@ -14,6 +14,7 @@ public class UserData {
   
   @NotBlank( message = "ユーザ名を入力してください" )
   private String userName;
+  private String userNameOld;
   
   @NotNull( message = "年齢を入力してください" )
   private Integer age;

@@ -30,6 +30,7 @@ public class UserUtils {
     UserData userData = new UserData();
     userData.setUserId( user.getUserId() );
     userData.setUserName( user.getUserName() );
+    userData.setUserNameOld( user.getUserName() );
     userData.setAge( user.getAge() );
     userData.setPassword( user.getPassword() );
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "yyyy-MM-dd HH:mm:ss" );

@@ -171,6 +171,7 @@ public class TodoController {
   @GetMapping( "/user/{user_id}" )
   public String showUser( @PathVariable( name = "user_id" ) int userId, Model model ) {
     UserData userData = userService.read( userId );
+    System.out.println( userData );
     model.addAttribute( "userData", userData );
     session.setAttribute( "mode", "update" );
     return "userForm";    

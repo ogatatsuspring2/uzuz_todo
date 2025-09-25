@@ -49,7 +49,8 @@ public class UserServiceImpl implements UserService {
   
   @Override
   public UserData read( int user_id ) {
-//    System.out.println( userRepository.findByUserName( "tuser1" ) );
+//    System.out.println( userRepository.findById( user_id ) );
+//    System.out.println( userUtils.Entity2Form( userRepository.findById( user_id ).get() ) );
     return userUtils.Entity2Form( userRepository.findById( user_id ).get() );
   }
   
@@ -84,7 +85,9 @@ public class UserServiceImpl implements UserService {
   
   @Override
   public boolean update( UserData userData, BindingResult result) {
-    if ( countUserName( userData.getUserName() ) > 0 ){
+//    System.out.println( userData );
+//    System.out.println( userData.getUserName().equals( userData.getUserNameOld() ) );
+    if ( !userData.getUserName().equals( userData.getUserNameOld() ) && countUserName( userData.getUserName() ) > 0 ){
       FieldError fieldError  = new FieldError (
         result.getObjectName(),
         "userName",
