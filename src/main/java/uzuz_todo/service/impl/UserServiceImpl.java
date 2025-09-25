@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
   
   @Override
   public boolean create(UserData userData, BindingResult result) {
-    if ( isExistUserName( userData.getUserName() ) ){
+    if ( countUserName( userData.getUserName() ) > 0 ){
       FieldError fieldError  = new FieldError (
         result.getObjectName(),
         "userName",
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
   
   @Override
   public boolean update(UserData userData, BindingResult result) {
-    if ( isExistUserName( userData.getUserName() ) ){
+    if ( countUserName( userData.getUserName() ) > 0 ){
       FieldError fieldError  = new FieldError (
         result.getObjectName(),
         "userName",
