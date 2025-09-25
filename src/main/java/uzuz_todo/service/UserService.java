@@ -11,6 +11,7 @@ public interface UserService {
   
   List<UserData> readAll();
   UserData read( int user_id );
+  int countUserName( String user_name );
   boolean create( UserData userData, BindingResult result );
   boolean update( UserData userData, BindingResult result );
   boolean delete( UserData userData );

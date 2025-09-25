@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
 import uzuz_todo.entity.User;
 import uzuz_todo.form.UserData;
@@ -31,11 +32,8 @@ public class UserServiceImpl implements UserService {
 
   
   
-  @Override
-  public UserData read( int user_id ) {
-//    System.out.println( userRepository.findByUserName( "tuser1" ) );
-    return userUtils.Entity2Form( userRepository.findById( user_id ).get() );
-  }
+
+  
 
   @Override
   public List<UserData> readAll() {
@@ -46,9 +44,33 @@ public class UserServiceImpl implements UserService {
     }
     return userList;
   }
+  
+  
+  
+  @Override
+  public UserData read( int user_id ) {
+//    System.out.println( userRepository.findByUserName( "tuser1" ) );
+    return userUtils.Entity2Form( userRepository.findById( user_id ).get() );
+  }
+  
+  
+  
+  @Override
+  public int countUserName( String user_name ) {
+    return userRepository.countByUserName( user_name );
+  }
 
+  
+  
   @Override
   public boolean create(UserData userData, BindingResult result) {
+    if ( isExistUserName( userData.getUserName() ) ){
+      FieldError fieldError  = new FieldError (
+        result.getObjectName(),
+        "userName",
+        "ユーザ名がすでに存在します" );
+      result.addError( fieldError );
+    }
     if ( !result.hasErrors() ) {
       User user = userUtils.Form2Entity( userData );
       userRepository.saveAndFlush( user );
@@ -58,8 +80,17 @@ public class UserServiceImpl implements UserService {
     }
   }
 
+  
+  
   @Override
   public boolean update(UserData userData, BindingResult result) {
+    if ( isExistUserName( userData.getUserName() ) ){
+      FieldError fieldError  = new FieldError (
+        result.getObjectName(),
+        "userName",
+        "ユーザ名がすでに存在します" );
+      result.addError( fieldError );
+    }
     if ( !result.hasErrors() ) {
       User user = userUtils.Form2Entity( userData );
       userRepository.saveAndFlush( user );
